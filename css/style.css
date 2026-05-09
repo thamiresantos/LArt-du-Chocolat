@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #3B2723;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+
+h1 {
+    color: #CFA838;
+    font-size: 1.2rem;
+}
+
+/* Esconde os links no mobile */
+.nav-links {
+    display: none;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: #c9a84c;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 16px;
+}
+
+#btn-carrinho, #btn-menu {
+    color: white;
+    cursor: pointer;
+    padding: 7px;
+}
+
+#btn-carrinho:hover, #btn-menu:hover{
+    background-color:#c9a84c3d;
+    border-radius: 10px;
+}
+
+
+/* Desktop (a partir de 768px) */
+@media (min-width: 768px) {
+    nav{
+        padding: 30px 32px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+    /* Esconde o hambúrguer no desktop */
+    #btn-menu {
+        display: none;
+    }
+
+    /* Mostra os links no desktop */
+    .nav-links {
+        display: flex;
+        gap: 32px;
+    }
+
+    .nav-links a{
+        font-size: 1.2rem;
+    }
+
+    .nav-icons {
+        padding: 0 20px;
+        font-weight: 500;
+    }
+
+}
