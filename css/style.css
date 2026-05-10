@@ -17,13 +17,13 @@ nav {
     padding: 16px 20px;
 }
 
-h1 {
+ #logo{
     color: #CFA838;
     font-size: 1.2rem;
+    text-decoration: none;
 }
 
-/* Esconde os links no mobile */
-.nav-links {
+.nav-links { /* Esconde os links no mobile */
     display: none;
     list-style: none;
 }
@@ -52,17 +52,77 @@ h1 {
     background-color:#c9a84c3d;
     border-radius: 10px;
 }
+/*------------------ section hero ------------------------*/
+#hero {
+    background: 
+    radial-gradient(
+        circle at 25% 40%,
+        rgba(92, 70, 55, 0.35) 0%,
+        rgba(92, 70, 55, 0.15) 30%,
+        transparent 60%
+    ),
+    linear-gradient(
+        to right,
+        #4A332B 30%,
+        #3B2723 65%,
+        #2B1C18 100%
+    );
+    min-height: calc(100vh - 70px); /* desconta o header */
+    display: flex;
+    flex-direction: column;
+    padding: 35px 20px 15px;
+    gap: 32px; /* espaço entre os elementos */
+    align-items: center;
+}
+
+#hero img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.hero-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;  
+}
+
+#titulo {
+    color: #CFA838;
+    font-weight: lighter;
+}
+
+#sub-titulo {
+    color: #DDD7C6;
+}
+
+#btn-pedir {
+    text-decoration: none;
+    color: #4A332B;
+    background-color: #CFA838;;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+
+}
 
 
-/* Desktop (a partir de 768px) */
+
+/*=========== Desktop (a partir de 768px) ============ */
 @media (min-width: 768px) {
     nav{
         padding: 30px 32px;
     }
 
-    h1 {
+    #logo {
         font-size: 2rem;
     }
+
     /* Esconde o hambúrguer no desktop */
     #btn-menu {
         display: none;
@@ -82,5 +142,46 @@ h1 {
         padding: 0 20px;
         font-weight: 500;
     }
+    /*------------------ section hero ------------------------*/
+    #hero {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 60px 80px;
+        min-height: calc(100vh - 98px); 
+    }
 
+    #hero img {
+        width: 45%;
+        height: auto;
+        object-fit: unset; 
+        max-height: 500px;
+    }
+
+    #hero .hero-texto {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    #titulo {
+        font-size: 4rem;
+    }
+
+    #sub-titulo{
+        font-size: 1.8rem;
+    }
+
+    #btn-pedir {
+        width: auto;
+        padding: 15px 35px;
+        font-size: 1.1rem;
+    }
+
+    #btn-pedir:hover {
+        background-color: #b08b1b;
+    }
 }
