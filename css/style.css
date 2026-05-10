@@ -23,6 +23,30 @@ nav {
     text-decoration: none;
 }
 
+#menu-mobile {
+    display: none;
+    background-color: #3B2723;
+    padding: 16px 20px;
+}
+
+#menu-mobile ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 8px 0;
+}
+
+#menu-mobile a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+#menu-mobile.aberto {
+    display: block;
+}
+
 .nav-links { /* Esconde os links no mobile */
     display: none;
     list-style: none;
