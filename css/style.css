@@ -7,6 +7,9 @@
 header {
     background-color: #3B2723;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 nav {
@@ -17,7 +20,7 @@ nav {
     padding: 16px 20px;
 }
 
- #logo{
+#logo{
     color: #CFA838;
     font-size: 1.2rem;
     text-decoration: none;
@@ -134,10 +137,177 @@ nav {
     text-align: center;
 
 }
+/*---------------- Categorias -----------------*/
+#categorias {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#titulo-categorias {
+    color: #3B2723;
+    font-weight: 400;
+    font-size: 1.5rem;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+#grade-categorias {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.card-categoria {
+    background-color: #4A332B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.card-categoria:hover {
+    background-color: #3B2723;
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+.card-categoria.ativo {
+    border: 3px solid #CFA838;
+}
+
+/*-----------------------Produtos----------------*/
+#produtos {
+   display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    padding: 20px;
+}
+
+#produtos-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+#titulo-produtos {
+    color: #3B2723;
+    font-weight: 400;
+    font-size: 1.5rem;
+    padding: 20px 0px;
+}
+
+#ver-todos {
+    color: #CFA838;
+    text-decoration: none;
+}
+
+#grade-produtos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.card-produto {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-produto img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.card-produto img:hover{
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+.card-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-info h3 {
+    color: #3B2723;
+    font-size: 1.1rem;
+}
+
+.card-estrelas {
+    color: #CFA838;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.card-estrelas span:last-child {
+    color: #888;
+}
+
+.card-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.card-preco {
+    color: #3B2723;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.btn-adicionar {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #CFA838;
+    color: #4A332B;
+    padding: 8px;
+    border-radius: 50%;
+    border: none;
+}
+
+.btn-adicionar:hover{
+    background-color: #b08b1b;
+}
 
 
 
-/*=========== Desktop (a partir de 768px) ============ */
+
+
+
+
+
+
+
+
+/*=========== Desktop (a partir de 768px) ============== */
 @media (min-width: 768px) {
     nav{
         padding: 30px 32px;
@@ -166,7 +336,7 @@ nav {
         padding: 0 20px;
         font-weight: 500;
     }
-    /*------------------ section hero ------------------------*/
+    /*--------- section hero -----------*/
     #hero {
         flex-direction: row;
         justify-content: space-between;
@@ -208,4 +378,35 @@ nav {
     #btn-pedir:hover {
         background-color: #b08b1b;
     }
+
+    /*---categoria---*/
+    #grade-categorias {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1200px;
+    }
+
+    #titulo-categorias {
+        font-size: 2rem;
+    }
+
+    .card-categoria {
+    font-size: 1rem;
+}
+
+    .card-categoria .material-symbols-outlined {
+        font-size: 2rem;
+    }
+
+    .card-categoria.ativo {
+    border: 5px solid #CFA838;
+}
+
+    /*-------produtos-----*/
+    #grade-produtos {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#produtos {
+    padding: 40px 80px;
+}
 }

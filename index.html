@@ -41,17 +41,72 @@
             <li><a href="#">Contato</a></li>
         </ul>
     </div>
-    
+
     <!---- Section hero ---->
     <section id="hero">
-    <div class="hero-texto">
-        <h1 id="titulo">A Arte em Forma de Chocolate</h1>
-        <p id="sub-titulo">Bolos artesanais feitos com ingredientes premium, entregues na sua porta.</p>
-        <a href="#" id="btn-pedir">Pedir Agora</a>
-    </div>
-    <img src="imagens/bolo-capa.png" alt="bolo de chocolate premium">
-</section>
+        <div class="hero-texto">
+            <h1 id="titulo">A Arte em Forma de Chocolate</h1>
+            <p id="sub-titulo">Bolos artesanais feitos com ingredientes premium, entregues na sua porta.</p>
+            <a href="#" id="btn-pedir">Pedir Agora</a>
+        </div>
+        <img src="imagens/bolo-capa.png" alt="bolo de chocolate premium">'
+    </section>
 
+    <!---- Categorias ---->
+    <section id="categorias">
+        <h2 id="titulo-categorias">Menu: O que você deseja hoje?</h2>
+
+        <div id="grade-categorias">
+
+            <button class="card-categoria ativo" data-categoria="classico">
+                <span class="material-symbols-outlined">cake</span>
+                Bolos Clássicos
+            </button>
+
+            <button class="card-categoria" data-categoria="gourmet">
+                <span class="material-symbols-outlined">star_shine</span>
+                Gourmet
+            </button>
+
+            <button class="card-categoria" data-categoria="vegano">
+                <span class="material-symbols-outlined">eco</span>
+                Veganos
+            </button>
+
+            <button class="card-categoria" data-categoria="festa">
+                <span class="material-symbols-outlined">celebration</span>
+                Festas
+            </button>
+
+        </div>
+    </section>
+
+    <!---- Seção Produtos ---->
+    <section id="produtos">
+        <div id="produtos-header">
+            <h2 id="titulo-produtos">Nossos Bolos</h2>
+            <a href="#" id="ver-todos">Ver Todos</a>
+        </div>
+        <div id="grade-produtos">
+            <!-- Cards gerados pelo JS -->
+
+            <!-- Exemplo de como o JS vai gerar cada card -->
+<div class="card-produto">
+    <img src="imagens/bolo-capa.png" alt="Trufa de Chocolate Premium">
+    <div class="card-info">
+        <h3>Trufa de Chocolate Premium</h3>
+        <div class="card-estrelas">
+            <span>★★★★☆</span>
+            <span>(128)</span>
+        </div>
+        <div class="card-rodape">
+            <span class="card-preco">R$ 150.00</span>
+            <button class="btn-adicionar">+</button>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
 
 
 <script src="js/main.js"></script>
