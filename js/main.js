@@ -41,7 +41,6 @@ function gerarEstrelas(qtd) {
 function renderizarProdutos(lista) {
     const grade = document.getElementById('grade-produtos');
     grade.innerHTML = '';
-
     lista.forEach(produto => {
         const card = document.createElement('div');
         card.classList.add('card-produto');
@@ -61,23 +60,190 @@ function renderizarProdutos(lista) {
         `;
         grade.appendChild(card);
     });
+
+    // Adiciona evento nos botões + depois de renderizar
+    document.querySelectorAll('.btn-adicionar').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.dataset.id);
+            adicionarAoCarrinho(id);
+        });
+    });
 }
 
 // ===================== FILTRO DE CATEGORIAS =====================
 const botoesCategorias = document.querySelectorAll('.card-categoria');
-
 botoesCategorias.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Remove ativo de todos
         botoesCategorias.forEach(b => b.classList.remove('ativo'));
-        // Adiciona ativo no clicado
         btn.classList.add('ativo');
-
         const categoria = btn.dataset.categoria;
-        const filtrados = produtos.filter(p => p.categoria === categoria);
-        renderizarProdutos(filtrados);
+        renderizarProdutos(produtos.filter(p => p.categoria === categoria));
     });
 });
 
-// Renderiza clássicos por padrão ao carregar
 renderizarProdutos(produtos.filter(p => p.categoria === 'classico'));
+
+// ===================== CARRINHO =====================
+let carrinho = [];
+
+const drawerCarrinho = document.getElementById('drawer-carrinho');
+const overlay = document.getElementById('overlay');
+const btnCarrinho = document.getElementById('btn-carrinho');
+const fecharCarrinho = document.getElementById('fechar-carrinho');
+const carrinhоItens = document.getElementById('carrinho-itens');
+const carrinhoVazio = document.getElementById('carrinho-vazio');
+const valorTotal = document.getElementById('valor-total');
+const badgeCarrinho = document.getElementById('badge-carrinho');
+
+// Abre o drawer
+btnCarrinho.addEventListener('click', () => {
+    drawerCarrinho.classList.add('aberto');
+    overlay.classList.add('ativo');
+    menuMobile.classList.remove('aberto');
+});
+
+// Fecha o drawer
+fecharCarrinho.addEventListener('click', fecharDrawer);
+overlay.addEventListener('click', fecharDrawer);
+
+function fecharDrawer() {
+    drawerCarrinho.classList.remove('aberto');
+    overlay.classList.remove('ativo');
+}
+
+function adicionarAoCarrinho(id) {
+    const produto = produtos.find(p => p.id === id);
+    const itemExistente = carrinho.find(item => item.id === id);
+
+    if (itemExistente) {
+        itemExistente.quantidade++;
+    } else {
+        carrinho.push({ ...produto, quantidade: 1 });
+    }
+
+    atualizarCarrinho();
+    drawerCarrinho.classList.add('aberto');
+    overlay.classList.add('ativo');
+}
+
+function atualizarCarrinho() {
+    carrinhoVazio.style.display = carrinho.length === 0 ? 'block' : 'none';
+
+    // Limpa itens antigos
+    document.querySelectorAll('.item-carrinho').forEach(el => el.remove());
+
+    let total = 0;
+    let qtdTotal = 0;
+
+    carrinho.forEach(item => {
+        total += item.preco * item.quantidade;
+        qtdTotal += item.quantidade;
+
+        const div = document.createElement('div');
+        div.classList.add('item-carrinho');
+        div.innerHTML = `
+            <img src="${item.imagem}" alt="${item.nome}">
+            <div class="item-info">
+                <p>${item.nome}</p>
+                <p class="item-preco">R$ ${item.preco.toFixed(2)}</p>
+                <div class="item-controles">
+                    <button class="btn-quantidade" data-acao="diminuir" data-id="${item.id}">−</button>
+                    <span class="item-quantidade">${item.quantidade}</span>
+                    <button class="btn-quantidade" data-acao="aumentar" data-id="${item.id}">+</button>
+                </div>
+            </div>
+            <button class="btn-remover" data-id="${item.id}">
+                <span class="material-symbols-outlined">delete</span>
+            </button>
+        `;
+        carrinhоItens.appendChild(div);
+    });
+
+    // Eventos dos botões de quantidade e remover
+    document.querySelectorAll('.btn-quantidade').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.dataset.id);
+            const acao = btn.dataset.acao;
+            const item = carrinho.find(i => i.id === id);
+            if (acao === 'aumentar') item.quantidade++;
+            if (acao === 'diminuir') {
+                item.quantidade--;
+                if (item.quantidade === 0) carrinho = carrinho.filter(i => i.id !== id);
+            }
+            atualizarCarrinho();
+        });
+    });
+
+    document.querySelectorAll('.btn-remover').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.dataset.id);
+            carrinho = carrinho.filter(i => i.id !== id);
+            atualizarCarrinho();
+        });
+    });
+
+    // Atualiza total e badge
+    valorTotal.textContent = `R$ ${total.toFixed(2)}`;
+    document.getElementById('modal-valor-total').textContent = `R$ ${total.toFixed(2)}`;
+
+    if (qtdTotal > 0) {
+        badgeCarrinho.style.display = 'flex';
+        badgeCarrinho.textContent = qtdTotal;
+    } else {
+        badgeCarrinho.style.display = 'none';
+    }
+}
+
+// ===================== MODAL FINALIZAR =====================
+const modalFinalizar = document.getElementById('modal-finalizar');
+const btnFinalizar = document.getElementById('btn-finalizar');
+const fecharModal = document.getElementById('fechar-modal');
+const camposCartao = document.getElementById('campos-cartao');
+
+btnFinalizar.addEventListener('click', () => {
+    if (carrinho.length === 0) return;
+    fecharDrawer();
+    modalFinalizar.classList.add('ativo');
+});
+
+fecharModal.addEventListener('click', () => {
+    modalFinalizar.classList.remove('ativo');
+});
+
+// Opções de entrega
+document.querySelectorAll('.opcao-entrega').forEach(opcao => {
+    opcao.addEventListener('click', () => {
+        document.querySelectorAll('.opcao-entrega').forEach(o => o.classList.remove('ativo'));
+        opcao.classList.add('ativo');
+    });
+});
+
+// Formas de pagamento
+document.querySelectorAll('.btn-pagamento').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.btn-pagamento').forEach(b => b.classList.remove('ativo'));
+        btn.classList.add('ativo');
+        // Mostra campos do cartão só para crédito e débito
+        const pagamento = btn.dataset.pagamento;
+        camposCartao.style.display = (pagamento === 'pix') ? 'none' : 'flex';
+    });
+});
+
+// ===================== MODAL CONFIRMADO =====================
+const modalConfirmado = document.getElementById('modal-confirmado');
+const btnConfirmar = document.getElementById('btn-confirmar');
+const btnNovoPedido = document.getElementById('btn-novo-pedido');
+
+btnConfirmar.addEventListener('click', () => {
+    modalFinalizar.classList.remove('ativo');
+    // Gera número do pedido aleatório
+    const numeroPedido = '#' + Math.floor(10000 + Math.random() * 90000);
+    document.getElementById('numero-pedido').textContent = numeroPedido;
+    modalConfirmado.classList.add('ativo');
+});
+
+btnNovoPedido.addEventListener('click', () => {
+    modalConfirmado.classList.remove('ativo');
+    carrinho = [];
+    atualizarCarrinho();
+});
