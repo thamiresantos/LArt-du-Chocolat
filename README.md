@@ -73,5 +73,5 @@ Este projeto é uma simulação de e-commerce. Nenhuma transação real é reali
 
 ---
 
-### © 2025 -Este projeto foi desenvolvido por Thamires Santos. 🌷
+### © 2026 -Este projeto foi desenvolvido por Thamires Santos. 🌷
 
