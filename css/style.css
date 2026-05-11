@@ -297,12 +297,149 @@ nav {
     background-color: #b08b1b;
 }
 
+/*------------ Promessa ----------*/
+#promessa {
+    background-color:  #F5ECD7;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+}
 
+#grade-promessa {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+    margin-top: 16px;
+}
 
+#titulo-promessa {
+    color: #3B2723;
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 20px 0px;
+    gap: 10px;
 
+}
 
+.card-promessa {
+    background-color:white;
+    padding: 15px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    gap: 8px;
+    padding: 30px 20px;
+}
 
+.icone-promessa {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #CFA838;
+    padding: 8px;
+    border-radius: 50%;
+    border: none;
+}
+
+.card-promessa h3 {
+    color: #3B2723;
+    font-weight: 200;
+}
+
+.card-promessa p {
+    color: #716a69;
+    font-weight: 200;
+}
+
+/*------------ Sobre Nós ----------*/
+#sobre {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+#titulo-sobre {
+    color: #3B2723;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+#texto-sobre {
+    color: #555;
+    line-height: 1.8;
+    max-width: 800px;
+}
+
+/*------------ Rodapé ----------*/
+footer {
+    background-color: #3B2723;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+#footer-colunas {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#footer-marca {
+    color: #CFA838;
+    font-size: 1.3rem;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+#footer-logo p,
+#footer-contato p,
+#footer-horario p {
+    color: #DDD7C6;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+#footer-contato h3,
+#footer-horario h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+#footer-copyright {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+    text-align: center;
+    color: #DDD7C6;
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+#footer-copyright p a {
+    text-decoration: none;
+    padding-top: 20px;
+    text-align: center;
+    color: #DDD7C6;
+    font-size: 0.85rem;
+}
+
+#footer-copyright p a:hover {
+    color: #b08b1b;
+}
 
 
 
@@ -391,7 +528,7 @@ nav {
 
     .card-categoria {
     font-size: 1rem;
-}
+    }
 
     .card-categoria .material-symbols-outlined {
         font-size: 2rem;
@@ -399,14 +536,74 @@ nav {
 
     .card-categoria.ativo {
     border: 5px solid #CFA838;
-}
+    }
 
     /*-------produtos-----*/
     #grade-produtos {
     grid-template-columns: repeat(3, 1fr);
-}
+    }
 
-#produtos {
-    padding: 40px 80px;
-}
+    #produtos {
+        padding: 40px 80px;
+    }
+
+    /*------Promessa -----*/
+    #grade-promessa {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+    }
+
+    #titulo-promessa {
+        font-size: 2rem;
+    }
+
+    .card-promessa h3 {
+    font-size: 1.3rem;
+    }
+
+    .card-promessa p {
+        font-size: 1rem;
+    }
+
+    .icone-promessa {
+        font-size: 2rem;
+        width: 65px;
+        height: 65px;
+    }
+    /*----sobre----*/
+    #sobre {
+        padding: 60px 80px;
+    }
+
+    #titulo-sobre {
+        font-size: 2.5rem;
+    }
+
+    #texto-sobre {
+        font-size: 1.1rem
+    }
+
+     /*----rodapé----*/
+    footer {
+        padding: 60px 80px;
+        flex-direction: column; /* mantém coluna */
+    }
+
+    #footer-colunas {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #footer-colunas > div {
+        width: 30%;
+    }
+
+    #footer-copyright {
+        font-size: 1rem;
+    }
+
+    #footer-copyright p a {
+        font-size: 1rem;
+    }
 }
